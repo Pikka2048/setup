@@ -13,10 +13,6 @@ on:
 permissions:
   contents: write
 
-env:
-  DEBIAN_FRONTEND: noninteractive
-  TZ: Asia/Tokyo 
-
 jobs:
   test-setup:
     runs-on: ubuntu-24.04
@@ -26,6 +22,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      # タイムゾーン設定を入力できない問題対策
+      - name: Disable interactive prompts globally
+        run: echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
 
       - name: Install dependencies
         run: |
