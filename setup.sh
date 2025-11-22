@@ -29,7 +29,7 @@ echo "クローン OK"
 
 read -p "nvimのLTSをソースからビルドしますか？ (y/N): " CONFIRM
 case "$CONFIRM" in
-    [yY]*) 
+    [yY]*)
         echo "処理を実行します..."
         bash build_nvim_lts.sh
         ;;
@@ -40,7 +40,7 @@ esac
 
 read -p "screenをソースからビルドしますか？ (y/N): " CONFIRM
 case "$CONFIRM" in
-    [yY]*) 
+    [yY]*)
         echo "処理を実行します..."
         bash build_screen.sh
         ;;
@@ -51,7 +51,7 @@ esac
 
 read -p "nodejsとnpmをnコマンドでインストールしますか？ (y/N): " CONFIRM
 case "$CONFIRM" in
-    [yY]*) 
+    [yY]*)
         echo "処理を実行します..."
         bash install_nodejs.sh
         ;;
@@ -62,7 +62,7 @@ esac
 
 read -p "設定ファイルを上書きコピーしますか？ (y/N): " CONFIRM
 case "$CONFIRM" in
-    [yY]*) 
+    [yY]*)
     echo "設定ファイルのコピーを開始します。"
     mkdir -p ~/.config/nvim
     cp init.lua ~/.config/nvim/
