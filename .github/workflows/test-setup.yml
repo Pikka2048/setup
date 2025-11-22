@@ -9,6 +9,10 @@ on:
       - 'setup.sh'
       - '*.sh'
       - '.github/workflows/**'
+
+permissions:
+  contents: write
+
 jobs:
   test-setup:
     runs-on: ubuntu-24.04
@@ -39,4 +43,3 @@ jobs:
           files: setup_tool
           draft: false
           prerelease: false
-          overwrite: true
