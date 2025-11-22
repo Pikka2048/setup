@@ -25,8 +25,14 @@ fi
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
-# 最新のRubyをインストール
-rbenv install $(rbenv install -l | grep -v - | tail -1)
+# 最新のRubyを選ぶ
+LATEST_RUBY=$(rbenv install -l | grep -v - | tail -1)
+# 既にあるならスキップ
+if ! rbenv versions | grep -q "$LATEST_RUBY"; then
+  rbenv install "$LATEST_RUBY"
+fi
+
+rbenv global "$LATEST_RUBY"
 
 gem install solargraph
 
