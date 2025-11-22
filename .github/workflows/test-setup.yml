@@ -1,11 +1,14 @@
 name: Setup Script Test
 
 on:
+  workflow_dispatch: 
   push:
     branches: [ "main" ]
-  pull_request:
-  workflow_dispatch: # 手動実行
-
+    # 以下のファイルに変更があれば実行される。
+    paths:
+      - 'setup.sh'
+      - '*.sh'
+      - '.github/workflows/**'
 jobs:
   test-setup:
     runs-on: ubuntu-latest
