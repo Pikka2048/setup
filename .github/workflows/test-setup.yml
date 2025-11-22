@@ -25,7 +25,7 @@ jobs:
 
       # タイムゾーン設定を入力できない問題対策
       - name: Disable interactive prompts globally
-        run: echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
+        run: echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
       - name: Install dependencies
         run: |
