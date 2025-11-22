@@ -27,17 +27,47 @@ git clone https://github.com/Pikka2048/setup.sh
 cd setup.sh
 echo "クローン OK"
 
-read -p "nvimの最新LTSをソースからビルドしますか？ (y/N): " CONFIRM
-
+read -p "nvimのLTSをソースからビルドしますか？ (y/N): " CONFIRM
 case "$CONFIRM" in
     [yY]*) 
-        # y または Y で始まる入力の場合
         echo "処理を実行します..."
-        # ここに実行したいコマンドを書く
-        ;;
+        bash build_nvim_lts.sh
     *) 
-        # それ以外（nやEnterのみなど）
-        echo "キャンセルしました。"
-        exit 1
+        echo "実行しません。"
         ;;
 esac
+
+read -p "screenをソースからビルドしますか？ (y/N): " CONFIRM
+case "$CONFIRM" in
+    [yY]*) 
+        echo "処理を実行します..."
+        bash build_screen.sh
+    *) 
+        echo "実行しません。"
+        ;;
+esac
+
+read -p "nodejsとnpmをnコマンドでインストールしますか？ (y/N): " CONFIRM
+case "$CONFIRM" in
+    [yY]*) 
+        echo "処理を実行します..."
+        bash install_nodejs.sh
+    *) 
+        echo "実行しません。"
+        ;;
+esac
+
+read -p "設定ファイルを上書きコピーしますか？ (y/N): " CONFIRM
+case "$CONFIRM" in
+    [yY]*) 
+    echo "設定ファイルのコピーを開始します。"
+    mkdir -p ~/.config/nvim
+    cp init.lua ~/.config/nvim/
+    cp coc-settings.json ~/.config/nvim/
+    cp .screenrc ~/
+    *) 
+        echo "実行しません。"
+        ;;
+esac
+
+
