@@ -23,7 +23,7 @@ fi
 
 echo "githubからクローン"
 cd ~
-git clone https://github.com/Pikka2048/setup.sh
+git clone https://github.com/Pikka2048/setup
 cd setup.sh
 echo "クローン OK"
 
