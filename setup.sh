@@ -65,9 +65,8 @@ case "$CONFIRM" in
     cp init.lua ~/.config/nvim/
     cp coc-settings.json ~/.config/nvim/
     cp .screenrc ~/
+    ;;
     *) 
         echo "実行しません。"
         ;;
 esac
-
-
