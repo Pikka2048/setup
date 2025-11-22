@@ -23,6 +23,12 @@ fi
 
 echo "githubからクローン"
 cd ~
+
+if [ -d "setup" ]; then
+    echo "既存の 'setup' ディレクトリが見つかりました。削除して再クローンします。"
+    rm -rf setup
+fi
+
 git clone https://github.com/Pikka2048/setup
 cd setup
 echo "クローン OK"
