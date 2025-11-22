@@ -1,0 +1,24 @@
+{
+    "coc.preferences.formatOnSaveFiletypes": [
+        "javascript",
+        "typescript",
+        "json",
+        "python",
+        "go"
+    ],
+    "editor.formatOnSave": true,
+    "suggest.maxCompleteItemCount": 50,
+    "diagnostic.virtualText": true,
+    "diagnostic.signOffset": 0,
+    "languageserver": {
+        "clangd": {
+            "command": "clangd",
+            "filetypes": [
+                "c",
+                "cpp",
+                "objc",
+                "objcpp"
+            ]
+        }
+    }
+}
