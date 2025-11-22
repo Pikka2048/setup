@@ -13,6 +13,10 @@ on:
 permissions:
   contents: write
 
+env:
+  DEBIAN_FRONTEND: noninteractive
+  TZ: Asia/Tokyo 
+
 jobs:
   test-setup:
     runs-on: ubuntu-24.04
