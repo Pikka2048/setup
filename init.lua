@@ -176,4 +176,5 @@ vim.g.coc_global_extensions = {
 	"coc-go",
 	"coc-rust-analyzer",
 	"coc-lua",
+	"coc-solargraph",
 }
