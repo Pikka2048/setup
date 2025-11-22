@@ -21,6 +21,12 @@ if ! grep -q "rbenv init" ~/.bashrc; then
   echo 'eval "$(rbenv init -)"' >> ~/.bashrc
 fi
 
+# .profileにも同じ内容を書く（nvim用)
+if ! grep -q "rbenv init" ~/.profile; then
+  echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.profile
+  echo 'eval "$(rbenv init -)"' >> ~/.profile
+fi
+
 # 直接PATHを通して rbenv を有効化
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
