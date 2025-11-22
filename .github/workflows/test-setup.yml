@@ -29,9 +29,14 @@ jobs:
 
       - name: Test 1
         run: ldd setup_tool
-
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+     
+      - name: Release binary
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/heads/main')
         with:
-          name: setup_tool_linux_amd64
-          path: setup_tool
+          tag_name: latest
+          name: Latest Build
+          files: setup_tool
+          draft: false
+          prerelease: false
+          overwrite: true
