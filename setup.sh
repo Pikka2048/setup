@@ -73,3 +73,9 @@ case "$CONFIRM" in
         echo "実行しません。"
         ;;
 esac
+
+echo "作業用ディレクトリをクリーンアップします"
+cd ~
+rm -rf setup
+
+echo "すべての処理が終了"
