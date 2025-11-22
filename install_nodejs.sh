@@ -8,7 +8,7 @@ sudo npm install -g n
 
 sudo n lts
 
-sudo apt purge nodejs npm
+sudo apt purge -y nodejs npm
 
 node -v
 npm -v
