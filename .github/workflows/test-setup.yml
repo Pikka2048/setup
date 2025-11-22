@@ -1,0 +1,20 @@
+name: Setup Script Test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+  workflow_dispatch: # 手動実行
+
+jobs:
+  test-setup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Execute setup.sh
+        run: |
+          chmod +x setup.sh
+          ./setup.sh

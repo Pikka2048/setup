@@ -2,7 +2,7 @@
 set -e
 
 sudo apt update
-sudo apt install ninja-build gettext cmake unzip curl build-essential
+sudo apt install -y ninja-build gettext cmake unzip curl build-essential
 
 cd /tmp
 git clone https://github.com/neovim/neovim
