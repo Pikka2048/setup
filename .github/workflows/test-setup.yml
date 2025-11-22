@@ -17,4 +17,4 @@ jobs:
       - name: Execute setup.sh
         run: |
           chmod +x setup.sh
-          ./setup.sh
+          yes | ./setup.sh
