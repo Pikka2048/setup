@@ -78,6 +78,7 @@ int main(int argc, char* argv[]) {
         {"Build Screen from source", false},
         {"Install Node.js & npm (via n)", false},
         {"Install Ruby & gem (via rbenv)", false},
+        {"Install Golang (from apt repo) & LSP", false},
         {"Overwrite config files (nvim, screen, bash)", false},
     };
 
@@ -232,8 +233,20 @@ int main(int argc, char* argv[]) {
         std::cout << "--- [Skip] Ruby" << std::endl;
     }
 
-    // --- Task 5: Config Files ---
+    // --- Task 5: Golang ---
     if (items[4].selected) {
+        std::cout << "\n>>> [Task] Installing Golang..." << std::endl;
+        if (run_command("bash install_golang.sh")) {
+            std::cout << ">>> [Success] Golang installation finished." << std::endl;
+        } else {
+            std::cerr << ">>> [Error] Golang installation failed." << std::endl;
+        }
+    } else {
+        std::cout << "--- [Skip] Golang" << std::endl;
+    }
+
+    // --- Task 6: Config Files ---
+    if (items[5].selected) {
         std::cout << "\n>>> [Task] Copying configuration files..." << std::endl;
         if (run_command("bash copy_setting.sh")){
             std::cout << ">>> [Success] Setting files copy finished." << std::endl;
