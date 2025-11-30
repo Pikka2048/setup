@@ -1,12 +1,14 @@
 # 自分用環境構築セットアップウイザード
 
+[おすすめエイリアス](https://github.com/Pikka2048/setup/blob/main/.bash_aliases)
+[地味に便利な関数](https://github.com/Pikka2048/setup/blob/main/.bash_functions)
+
+
 ```
 wget -q https://github.com/Pikka2048/setup/releases/download/latest/setup_tool && chmod +x setup_tool && ./setup_tool
 ```
 
 https://github.com/user-attachments/assets/88591fe0-68d1-47ab-b0bc-ef55b4f6b1c6
-
-
 
 ※ Debian系環境のみ対応
 
