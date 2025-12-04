@@ -33,5 +33,10 @@ alias npdev='npm run dev'
 alias npstart='npm run start'
 
 # python
-alias venv='. venv/bin/activate'
+alias venv='. .venv/bin/activate'
 alias p='python'
+
+# django
+alias makemigrate='python manage.py makemigrations'
+alias migrate='python manage.py migrate'
+alias djrun='python manage.py runserver'
