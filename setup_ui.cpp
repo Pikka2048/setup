@@ -80,6 +80,7 @@ int main(int argc, char* argv[]) {
         {"Install Ruby & gem (via rbenv)", false},
         {"Install Golang (from apt repo) & LSP", false},
         {"Install Rust (via rustup)", false},
+        {"Install Docker (via get.docker.com)", false},
         {"Overwrite config files (nvim, screen, bash)", false},
     };
 
@@ -258,8 +259,20 @@ int main(int argc, char* argv[]) {
         std::cout << "--- [Skip] Rust" << std::endl;
     }
 
-    // --- Task 7: Config Files ---
+    // --- Task 7: Docker ---
     if (items[6].selected) {
+        std::cout << "\n>>> [Task] Installing Docker..." << std::endl;
+        if (run_command("bash install_docker.sh")) {
+            std::cout << ">>> [Success] Docker installation finished." << std::endl;
+        } else {
+            std::cerr << ">>> [Error] Docker installation failed." << std::endl;
+        }
+    } else {
+        std::cout << "--- [Skip] Docker" << std::endl;
+    }
+
+    // --- Task 8: Config Files ---
+    if (items[7].selected) {
         std::cout << "\n>>> [Task] Copying configuration files..." << std::endl;
         if (run_command("bash copy_setting.sh")){
             std::cout << ">>> [Success] Setting files copy finished." << std::endl;
