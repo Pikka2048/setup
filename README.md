@@ -10,7 +10,7 @@ wget -q https://github.com/Pikka2048/setup/releases/download/latest/setup_tool &
 
 https://github.com/user-attachments/assets/88591fe0-68d1-47ab-b0bc-ef55b4f6b1c6
 
-※ Debian系環境のみ対応
+※ Debian/Ubuntu と Fedora(dnf) 環境に対応
 
 ## セットアップ出来るもの
 

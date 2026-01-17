@@ -1,8 +1,15 @@
 #!/bin/bash
 set -e
 
-sudo apt update
-sudo apt install -y ninja-build gettext cmake unzip curl build-essential
+if command -v apt &> /dev/null; then
+  sudo apt update
+  sudo apt install -y ninja-build gettext cmake unzip curl build-essential
+elif command -v dnf &> /dev/null; then
+  sudo dnf install -y ninja-build gettext cmake unzip curl gcc gcc-c++ make
+else
+  echo "apt または dnf が見つかりません。"
+  exit 1
+fi
 
 cd /tmp
 git clone https://github.com/neovim/neovim

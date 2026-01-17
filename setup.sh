@@ -1,14 +1,22 @@
 #!/bin/bash
 set -e
 
-if ! command -v apt &> /dev/null; then
-    echo "debian系以外は対応していません。"
+if command -v apt &> /dev/null; then
+    PKG_MANAGER="apt"
+elif command -v dnf &> /dev/null; then
+    PKG_MANAGER="dnf"
+else
+    echo "apt または dnf が見つかりません。"
     exit 1
 fi
 
 echo "gitが使えるか確認します。"
 if ! command -v git &> /dev/null; then
-    sudo apt update && sudo apt install -y git
+    if [ "$PKG_MANAGER" = "apt" ]; then
+        sudo apt update && sudo apt install -y git
+    else
+        sudo dnf install -y git
+    fi
 
     # インストールが成功したか確認
     if command -v git &> /dev/null; then
