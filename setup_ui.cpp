@@ -54,7 +54,7 @@ void draw_menu(const std::vector<MenuItem>& items, int highlight) {
 
     // フッター
     attron(COLOR_PAIR(2));
-    mvprintw(h - 2, 2, "Target: Debian/Ubuntu based systems");
+    mvprintw(h - 2, 2, "Target: Debian/Ubuntu/Fedora (apt or dnf)");
     attroff(COLOR_PAIR(2));
 
     refresh();
@@ -78,7 +78,7 @@ int main(int argc, char* argv[]) {
         {"Build Screen from source", false},
         {"Install Node.js & npm (via n)", false},
         {"Install Ruby & gem (via rbenv)", false},
-        {"Install Golang (from apt repo) & LSP", false},
+        {"Install Golang (from package repo) & LSP", false},
         {"Install Rust (via rustup)", false},
         {"Install Docker (via get.docker.com)", false},
         {"Overwrite config files (nvim, screen, bash)", false},
@@ -146,9 +146,14 @@ int main(int argc, char* argv[]) {
 
     std::cout << "\n=== Starting Setup Process ===\n" << std::endl;
 
-    // 1. システム要件チェック (apt)
-    if (!run_command("command -v apt > /dev/null")) {
-        std::cerr << "[Error] Non-Debian system detected (apt not found)." << std::endl;
+    // 1. システム要件チェック (apt/dnf)
+    std::string pkg_manager;
+    if (run_command("command -v apt > /dev/null")) {
+        pkg_manager = "apt";
+    } else if (run_command("command -v dnf > /dev/null")) {
+        pkg_manager = "dnf";
+    } else {
+        std::cerr << "[Error] apt or dnf not found." << std::endl;
         return 1;
     }
 
@@ -156,7 +161,10 @@ int main(int argc, char* argv[]) {
     std::cout << "[System] Checking Git environment..." << std::endl;
     if (!run_command("command -v git > /dev/null")) {
         std::cout << "[System] Installing Git..." << std::endl;
-        if (!run_command("sudo apt update && sudo apt install -y git")) {
+        std::string install_git_cmd = pkg_manager == "apt"
+            ? "sudo apt update && sudo apt install -y git"
+            : "sudo dnf install -y git";
+        if (!run_command(install_git_cmd)) {
             std::cerr << "[Error] Failed to install Git." << std::endl;
             return 1;
         }

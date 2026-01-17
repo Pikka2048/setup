@@ -1,8 +1,15 @@
 #!/bin/bash
 set -e
 
-sudo apt update
-sudo apt install -y libssl-dev libreadline-dev zlib1g-dev autoconf bison build-essential libyaml-dev libreadline-dev libncurses5-dev libffi-dev libgdbm-dev 
+if command -v apt &> /dev/null; then
+  sudo apt update
+  sudo apt install -y libssl-dev libreadline-dev zlib1g-dev autoconf bison build-essential libyaml-dev libreadline-dev libncurses5-dev libffi-dev libgdbm-dev
+elif command -v dnf &> /dev/null; then
+  sudo dnf install -y openssl-devel readline-devel zlib-devel autoconf bison gcc gcc-c++ make libyaml-devel ncurses-devel libffi-devel gdbm-devel
+else
+  echo "apt または dnf が見つかりません。"
+  exit 1
+fi
 
 if [ ! -d "$HOME/.rbenv" ]; then
   git clone https://github.com/rbenv/rbenv.git ~/.rbenv
