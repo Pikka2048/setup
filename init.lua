@@ -100,7 +100,7 @@ require("lazy").setup({
 		build = ":TSUpdate",
 		config = function()
 			local configs = require("nvim-treesitter.configs")
-			local ensure_installed = {
+			local ensure_installed = vim.g.treesitter_ensure_installed or {
 				"c",
 				"lua",
 				"vim",
@@ -125,7 +125,7 @@ require("lazy").setup({
 				"xml",
 				"yaml",
 			}
-			if next(ensure_installed) == nil then
+			if type(ensure_installed) == "table" and next(ensure_installed) == nil then
 				ensure_installed = "all"
 			end
 			configs.setup({
