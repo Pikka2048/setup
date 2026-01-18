@@ -100,35 +100,40 @@ require("lazy").setup({
 		build = ":TSUpdate",
 		config = function()
 			local configs = require("nvim-treesitter.configs")
+			local default_ensure_installed = {
+				"c",
+				"lua",
+				"vim",
+				"vimdoc",
+				"python",
+				"javascript",
+				"asm",
+				"csv",
+				"bash",
+				"css",
+				"go",
+				"java",
+				"json",
+				"objdump",
+				"php",
+				"ruby",
+				"rust",
+				"sql",
+				"ssh_config",
+				"strace",
+				"typescript",
+				"xml",
+				"yaml",
+			}
 			local ensure_installed = vim.g.treesitter_ensure_installed
 			if ensure_installed == nil then
-				ensure_installed = {
-					"c",
-					"lua",
-					"vim",
-					"vimdoc",
-					"python",
-					"javascript",
-					"asm",
-					"csv",
-					"bash",
-					"css",
-					"go",
-					"java",
-					"json",
-					"objdump",
-					"php",
-					"ruby",
-					"rust",
-					"sql",
-					"ssh_config",
-					"strace",
-					"typescript",
-					"xml",
-					"yaml",
-				}
-			elseif type(ensure_installed) == "table" and vim.tbl_isempty(ensure_installed) then
-				ensure_installed = "all"
+				ensure_installed = default_ensure_installed
+			elseif type(ensure_installed) == "table" then
+				if vim.tbl_isempty(ensure_installed) then
+					ensure_installed = "all"
+				end
+			elseif type(ensure_installed) ~= "string" then
+				ensure_installed = default_ensure_installed
 			end
 			configs.setup({
 				ensure_installed = ensure_installed,
