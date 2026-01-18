@@ -125,7 +125,7 @@ require("lazy").setup({
 				"xml",
 				"yaml",
 			}
-			if type(ensure_installed) == "table" and vim.tbl_isempty(ensure_installed) then
+			if vim.tbl_isempty(ensure_installed) then
 				ensure_installed = "all"
 			end
 			configs.setup({
